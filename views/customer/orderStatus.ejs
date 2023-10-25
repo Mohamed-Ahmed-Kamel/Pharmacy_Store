@@ -1,0 +1,19 @@
+<section>
+    <div class="container-status">
+        <div class="tracking-status">
+            <div class="status-header">
+                <h1 class="title">Track Your Order</h1>
+                <h6 class="order-id">Order ID: <%= order._id%></h6>
+                <!-- Send the order data to the Server-side -->
+                <input id="hiddenInput" type="hidden" value="<%= JSON.stringify(order) %>">
+            </div>
+            <ul class="status-list">
+                <li class="status-item" data-status="order_placed"><i class="fa-regular fa-circle-check"></i><span>Order Placed</span></li>
+                <li class="status-item" data-status="confirmed"><i class="fa-regular fa-hourglass"></i><span>Order Confirmed</span></li>
+                <li class="status-item" data-status="prepared"><i class="fa-solid fa-prescription-bottle"></i><span>Order Prepared</span></li>
+                <li class="status-item" data-status="delivered"><i class="fa-solid fa-truck"></i><span>Out for Delivery</span></li>
+                <li class="status-item" data-status="completed"><i class="fa-solid fa-face-smile-beam"></i><span>Order Completed</span></li>
+            </ul>
+        </div>
+    </div>
+</section>

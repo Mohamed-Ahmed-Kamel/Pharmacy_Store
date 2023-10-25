@@ -1,0 +1,31 @@
+<section class="table-container">
+    <div>
+      <h1>All orders</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>Orders</th>
+            <th>Phone</th>
+            <th>Address</th>
+            <th>Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (orders.length) { %> <% orders.forEach((order)=>{ %>
+          <tr>
+            <td>
+              <a href="/cart/customers/orders/<%= order._id %>">
+                <%= order._id %>
+              </a>
+            </td>
+            <td><%= order.phone %></td>
+            <td><%= order.address %></td>
+            <td><%= order.createdAt %></td>
+          </tr>
+          <% }) %> <% } else { %>
+          <tr><td colspan="4"><span>No Orders Found!</span></td></tr>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+</section>

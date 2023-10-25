@@ -1,0 +1,48 @@
+<% if(session.cart) { %>
+<section class="cart-section">
+    <div class="cart-box">
+        <h1>Your Shopping Cart</h1>
+        <% for(let medicine of Object.values(session.cart.items)) { %>
+        <div class="cart-item">
+            <div class="product">
+                <img src="img/<%= medicine.item.image %>" alt="Product">
+                <span class="product-name"><%= medicine.item.name %></span>
+            </div>
+            <div class="product-price"><%= medicine.item.price * medicine.qty %> EGP</div>
+            <div class="product-total"><%= medicine.qty %> Pcs</div>
+            <div class="product-action">
+                <form action="/cart/remove-item", method="POST">
+                    <input type="hidden", name="medicineID" value="<%= JSON.stringify(medicine.item._id) %>">
+                    <button class="remove-btn">Remove</button>
+                </form>
+            </div>
+        </div>
+        <% } %>
+        <div class="cart-total">
+            <h3>Total Price: <%= session.cart.totalPrice %></h3>
+            <a href="/cart/remove-all" class="removeAll-btn">Remove All</a>
+        </div>
+        <% if(user) { %>
+        <div class="form-box">
+            <form action="/cart/orders" method="POST" class="order-form">
+                <input name="phone" type="text" placeholder="Phone Number" class="input-field" required />
+                <input name="address" type="text" placeholder="Address" class="input-field" required />
+                <div class="button-box">
+                    <button type="submit" class="submit-button">Order Now</button>
+                </div>
+            </form>
+        </div>
+        <% } else { %>
+        <div class="login-link-box">
+            <a href="/user/login" class="login-link">Login to continue</a>
+        </div>
+        <% } %>
+    </div>
+</section>
+<% } else { %>
+<section class="empty-cart">
+    <h1>Empty cart</h1>
+    <img src="img/empty-cart.png" alt="Empty cart">
+    <a href="/">Go back</a>
+</section>
+<% } %>

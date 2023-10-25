@@ -1,0 +1,25 @@
+<section>
+    <!-- <div class="header">
+        <h1>GRINTA</h1>
+        <h2>EMPOWERING PHARMACISTS</h2>
+    </div> -->
+    <div class="search-box">
+        <input class="search-input" type="text" placeholder="Search For Medications">
+    </div>
+</section>
+
+<section class="medicines-section">
+    <h1>All Medicines</h1>
+    <div class="medicine-box">
+        <% medicines.forEach((medicine) => { %>
+        <div class="medicine">
+            <img src="img/<%= medicine.image %>" alt="Medicine">
+            <div class="medicine-info">
+                <h4 class="medicine-title"><%= medicine.name %></h4>
+                <p class="medicine-price"><%= medicine.price %> EGP</p>
+                <button data-medicine="<%= JSON.stringify(medicine) %>" class="medicine-btn">Add to cart</button>
+            </div>
+        </div>
+        <% }) %>
+    </div>
+</section>

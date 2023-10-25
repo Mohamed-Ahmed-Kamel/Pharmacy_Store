@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="icon" href="/img/icon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Pharmacy Store</title>
+</head>
+<body>
+    <header>
+        <a class="logo" href="/"><i class="fa-solid fa-capsules"></i></a>
+        <ul class="navlist">
+            <% if(!user) { %>
+            <li><a href="/user/login">Login</a></li>
+            <li><a href="/user/register">Register</a></li>
+            <% } else { %>
+            <li>
+                <form id="logoutForm" method="POST" action="/user/logout">
+                    <a href="#" onclick="document.getElementById('logoutForm').submit();">Logout</a>
+                </form>
+            </li>
+            <% if(user.role == 'user') { %>
+            <li><a href="/cart/customers/orders">Purchases</a></li>
+            <% } else { %>
+            <li><a href="/admin/orders">Orders</a></li>
+            <% } %>
+            <% } %>
+        </ul>
+        
+        <a href="/cart"><span class="cartCounter"><%= session.cart ? session.cart.totalQty : '' %></span><i class="fa-solid fa-cart-shopping"></i></a>
+
+    </header>
+    <%- body %>
+    <script src="/script.js"></script>
+</body>
+</html>
